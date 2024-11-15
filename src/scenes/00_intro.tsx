@@ -11,7 +11,7 @@ export default makeScene2D(function* (view) {
 	// TODO: calculate timings of beats
 	//
 	// this scene is planned to be droplets falling into the screen causing ripples
-	// The ripples should be concentric circles. I think I'm gonna need to figure out 
+	// The ripples should be concentric circles. I think I'm gonna need to figure out
 	// an angle that the view should be at? So that it's like you're looking "across"
 	// but also "over" a piece of water. REALLY close up tho
 
