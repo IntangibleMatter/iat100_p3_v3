@@ -64,6 +64,10 @@
 2. Camera slides down, shows bag/bundle of money dangling from other handcuff
 3. "Without even a fine" shown below cuffs
 
+- ALT: "Made it outta life in prison" but the is and ls become prison bars over
+	the whole screen
+
+
 ***TODO:*** made it out with no convictions I like to be bright
 
 ## 04 - I will find you
