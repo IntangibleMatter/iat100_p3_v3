@@ -4,10 +4,12 @@ import {
 	createRefArray,
 	useLogger,
 	usePlayback,
+	useRandom,
+	Vector2,
 	waitFor,
 	waitUntil,
 } from "@motion-canvas/core";
-import { colour_bg } from "../defs/theme";
+import { colour_bg, colour_fg } from "../defs/theme";
 import { WaterDrop } from "../components/WaterDrop";
 
 interface DropTimePair {
@@ -18,24 +20,27 @@ interface DropTimePair {
 export default makeScene2D(function* (view) {
 	const bg = createRef<Rect>();
 
+	const startDrop = createRef<WaterDrop>();
 	const droplets: DropTimePair[] = [
-		{ drop: new WaterDrop({ fill: "#ff0000", x: 0, y: 0 }), wait: 0 }, // also on 0.4 second wait
-		{ drop: new WaterDrop({ fill: "#00ff00", x: 0, y: 0 }), wait: 0.15 },
-		{ drop: new WaterDrop({ fill: "#0000ff", x: 0, y: 0 }), wait: 0.39 },
-		{ drop: new WaterDrop({ fill: "#ffff00", x: 0, y: 0 }), wait: 0.39 },
-		{ drop: new WaterDrop({ fill: "#ff00ff", x: 0, y: 0 }), wait: 0.16 },
-		{ drop: new WaterDrop({ fill: "#123456", x: 0, y: 0 }), wait: 0.39 },
-		{ drop: new WaterDrop({ fill: "#f05090", x: 0, y: 0 }), wait: 0.31 },
-		{ drop: new WaterDrop({ fill: "#069420", x: 0, y: 0 }), wait: 0.31 },
+		{ drop: new WaterDrop({ fill: colour_fg, x: 0, y: 0 }), wait: 0.15 },
+		{ drop: new WaterDrop({ fill: colour_fg, x: 0, y: 0 }), wait: 0.39 },
+		{ drop: new WaterDrop({ fill: colour_fg, x: 0, y: 0 }), wait: 0.39 },
+		{ drop: new WaterDrop({ fill: colour_fg, x: 0, y: 0 }), wait: 0.16 },
+		{ drop: new WaterDrop({ fill: colour_fg, x: 0, y: 0 }), wait: 0.39 },
+		{ drop: new WaterDrop({ fill: colour_fg, x: 0, y: 0 }), wait: 0.31 },
+		{ drop: new WaterDrop({ fill: colour_fg, x: 0, y: 0 }), wait: 0.31 },
+		{ drop: new WaterDrop({ fill: colour_fg, x: 0, y: 0 }), wait: 0.4 }, // also on 0.4 second wait
 	];
 
 	view.add(<Rect ref={bg} fill={colour_bg} size={[1920, 1080]} />);
+	view.add(<WaterDrop ref={startDrop} />);
 	for (const drop of droplets) {
 		view.add(drop.drop);
 	}
 	const logger = useLogger();
 	const playback = usePlayback();
 	const ndrop = createRef<WaterDrop>();
+	const random = useRandom();
 
 	// TODO: calculate timings of beats
 	//
@@ -46,15 +51,20 @@ export default makeScene2D(function* (view) {
 	//
 	for (let i = 0; i < 4; i++) {
 		for (const drop of droplets) {
-			yield* waitFor(drop.wait);
+			//yield* waitFor(drop.wait);
 			drop.drop.moveToTop();
+			yield drop.drop.dropAt(
+				new Vector2(random.nextInt(-800, 800), random.nextInt(-200, 200)),
+				drop.wait,
+			);
+			yield* waitFor(drop.wait);
 			logger.debug(
 				`Waited: ${drop.wait}s for bg of colour ${drop.drop.fill()} on frame ${playback.frame}.`,
 			);
-			yield drop.drop.position.y(0, 0); // replace with the actual drop doing its thing call
+			//yield drop.drop.position.y(0, 0); // replace with the actual drop doing its thing call
 		}
-		yield* waitFor(0.4);
-		logger.debug(`BONUS WAIT OF 0.4s FOR CYCLE OFFSET OF ${playback.frame}`);
+		//yield* waitFor(0.4);
+		//logger.debug(`BONUS WAIT OF 0.4s FOR CYCLE OFFSET OF ${playback.frame}`);
 	}
 
 	//yield* waitUntil("end");
