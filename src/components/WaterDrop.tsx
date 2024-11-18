@@ -54,9 +54,9 @@ export class WaterDrop extends Shape {
 				con.opacity(1);
 				con.lineWidth(8);
 				yield* any(
-					con.size([256, 256], 0.7, easeOutCubic),
-					con.opacity(0, 0.6, linear),
-					con.lineWidth(1, 0.6, linear),
+					con.size([1024, 1024], 1.0, easeOutCubic),
+					con.opacity(0, 0.9, linear),
+					con.lineWidth(1, 0.9, linear),
 				);
 			}),
 		);

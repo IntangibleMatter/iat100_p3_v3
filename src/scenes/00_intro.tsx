@@ -31,6 +31,47 @@ export default makeScene2D(function* (view) {
 		{ drop: new WaterDrop({ fill: colour_fg, x: 0, y: 0 }), wait: 0.31 },
 		{ drop: new WaterDrop({ fill: colour_fg, x: 0, y: 0 }), wait: 0.4 }, // also on 0.4 second wait
 	];
+	const dropTargets: number[][] = [
+		// first set
+		[-600, 300],
+		[0, 0],
+		[600, -300],
+		[-600, 300],
+		[-300, 200],
+		[0, 100],
+		[300, -200],
+		[600, -100],
+		// second set
+		[-600, 300],
+		[0, 0],
+		[600, -300],
+		[-600, 300],
+		[-300, 200],
+		[0, 100],
+		[300, -200],
+		[600, -100],
+		// third set
+		[-600, 300],
+		[0, 0],
+		[600, -300],
+		[-600, 300],
+		[-300, 200],
+		[0, 100],
+		[300, -200],
+		[600, -100],
+		// fourth set
+		[-600, 300],
+		[0, 0],
+		[600, -300],
+		[-600, 300],
+		[-300, 200],
+		[0, 100],
+		[300, -200],
+		[600, -100],
+		[1000, 1000],
+		[1000, 1000],
+		[1000, 1000],
+	];
 
 	view.add(<Rect ref={bg} fill={colour_bg} size={[1920, 1080]} />);
 	view.add(<WaterDrop ref={startDrop} />);
@@ -49,14 +90,17 @@ export default makeScene2D(function* (view) {
 	// an angle that the view should be at? So that it's like you're looking "across"
 	// but also "over" a piece of water. REALLY close up tho
 	//
+	//
+	let dropidx = 1; // 1 bc we're skipping the first for now
 	for (let i = 0; i < 4; i++) {
 		for (const drop of droplets) {
 			//yield* waitFor(drop.wait);
 			drop.drop.moveToTop();
 			yield drop.drop.dropAt(
-				new Vector2(random.nextInt(-800, 800), random.nextInt(-200, 200)),
+				new Vector2(dropTargets[dropidx][0], dropTargets[dropidx][1]),
 				drop.wait,
 			);
+			dropidx++;
 			yield* waitFor(drop.wait);
 			logger.debug(
 				`Waited: ${drop.wait}s for bg of colour ${drop.drop.fill()} on frame ${playback.frame}.`,
