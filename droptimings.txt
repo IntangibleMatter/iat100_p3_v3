@@ -23,3 +23,44 @@ Delays (until drop happens, so delay for drop[0] is 0, drop[1] is 0.15, drop[2] 
 6: 0.31
 7: 0.31
 8: 0.40 (REPEAT TIME)
+
+
+Frames:
+
+Waited: 0s for bg of colour undefined on frame 0.
+seek time
+79.0 ms
+Waited: 0.15s for bg of colour #00ff00 on frame 5.
+Waited: 0.39s for bg of colour #0000ff on frame 17.
+Waited: 0.39s for bg of colour #ffff00 on frame 28.
+Waited: 0.16s for bg of colour #ff00ff on frame 33.
+Waited: 0.39s for bg of colour #123456 on frame 45.
+Waited: 0.31s for bg of colour #f05090 on frame 54.
+Waited: 0.31s for bg of colour #069420 on frame 63.
+BONUS WAIT OF 0.4s FOR CYCLE OFFSET OF 75
+Waited: 0s for bg of colour undefined on frame 75.
+Waited: 0.15s for bg of colour #00ff00 on frame 81.
+Waited: 0.39s for bg of colour #0000ff on frame 93.
+Waited: 0.39s for bg of colour #ffff00 on frame 104.
+Waited: 0.16s for bg of colour #ff00ff on frame 109.
+Waited: 0.39s for bg of colour #123456 on frame 121.
+Waited: 0.31s for bg of colour #f05090 on frame 130.
+Waited: 0.31s for bg of colour #069420 on frame 140.
+BONUS WAIT OF 0.4s FOR CYCLE OFFSET OF 152
+Waited: 0s for bg of colour undefined on frame 152.
+Waited: 0.15s for bg of colour #00ff00 on frame 157.
+Waited: 0.39s for bg of colour #0000ff on frame 169.
+Waited: 0.39s for bg of colour #ffff00 on frame 180.
+Waited: 0.16s for bg of colour #ff00ff on frame 185.
+Waited: 0.39s for bg of colour #123456 on frame 197.
+Waited: 0.31s for bg of colour #f05090 on frame 206.
+Waited: 0.31s for bg of colour #069420 on frame 216.
+BONUS WAIT OF 0.4s FOR CYCLE OFFSET OF 228
+Waited: 0s for bg of colour undefined on frame 228.
+Waited: 0.15s for bg of colour #00ff00 on frame 233.
+Waited: 0.39s for bg of colour #0000ff on frame 245.
+Waited: 0.39s for bg of colour #ffff00 on frame 256.
+Waited: 0.16s for bg of colour #ff00ff on frame 261.
+Waited: 0.39s for bg of colour #123456 on frame 273.
+Waited: 0.31s for bg of colour #f05090 on frame 282.
+Waited: 0.31s for bg of colour #069420 on frame 292.
