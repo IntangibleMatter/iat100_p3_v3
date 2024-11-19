@@ -31,7 +31,7 @@ export class WaterDrop extends Shape {
 		range(3).map(() => this.add(<Circle ref={this.concentric} stroke={this.fill} lineWidth={8} />));
 	}
 
-	public *dropAt(position: Vector2, timeFromNow: number) {
+	public *dropAt(position: Vector2, timeFromNow: number, targetSize: number = 1024) {
 		const logger = useLogger();
 		const playback = usePlayback();
 		logger.debug(`Dropping to position (${position.x}, ${position.y}) in ${timeFromNow}s`);
@@ -40,25 +40,36 @@ export class WaterDrop extends Shape {
 			yield* waitFor(timeFromNow - 0.25);
 		}
 		this.drop().opacity(1);
-		this.drop().size([64, 64]);
+		this.drop().size([128, 128]);
 		let waitTime = timeFromNow - 0.25 < 0 ? timeFromNow : 0.25;
 		yield* this.drop().position(position, waitTime, easeInCubic);
 		yield this.drop().size([0, 0], 0.1);
 		this.drop().opacity(0);
-		yield* sequence(
-			0.1,
-			...this.concentric.map(function* (con) {
-				logger.debug(`circle of ${con}`);
-				con.position(position);
-				con.size([16, 16]);
-				con.opacity(1);
-				con.lineWidth(8);
-				yield* any(
-					con.size([1024, 1024], 1.0, easeOutCubic),
-					con.opacity(0, 0.9, linear),
-					con.lineWidth(1, 0.9, linear),
-				);
-			}),
-		);
+		if (targetSize != 1340) {
+			yield* sequence(
+				0.1,
+				...this.concentric.map(function* (con) {
+					logger.debug(`circle of ${con}`);
+					con.position(position);
+					con.size([16, 16]);
+					con.opacity(1);
+					con.lineWidth(8);
+
+					yield* any(
+						con.size([targetSize, targetSize], 1.0, easeOutCubic),
+						con.opacity(0, 0.9, easeOutCubic),
+						con.lineWidth(1, 0.9, easeOutCubic),
+					);
+				}),
+			);
+		} else {
+			let con = this.concentric[0];
+			con.position(position);
+			con.size([16, 16]);
+			con.opacity(1);
+			con.lineWidth(8);
+			yield con.size([targetSize, targetSize], 0.4, easeOutCubic);
+			yield* waitFor(0.9);
+		}
 	}
 }
