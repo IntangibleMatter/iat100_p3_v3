@@ -2,8 +2,32 @@
   "version": 0,
   "timeEvents": [
     {
-      "name": "oh its easy",
-      "targetTime": 2.4638432470553715
+      "name": "00 - its",
+      "targetTime": 0.35273445933237174
+    },
+    {
+      "name": "01 - I lost to time",
+      "targetTime": 0.3621719505663685
+    },
+    {
+      "name": "clockhand out",
+      "targetTime": 1.554980816697277
+    },
+    {
+      "name": "feverin",
+      "targetTime": 1.716128221568269
+    },
+    {
+      "name": "got a fever",
+      "targetTime": 2.0922866503732744
+    },
+    {
+      "name": "fever slide left",
+      "targetTime": 3.1963733779854397
+    },
+    {
+      "name": "ekjanks",
+      "targetTime": 7.2887201626962055
     }
   ],
   "seed": 1047734592

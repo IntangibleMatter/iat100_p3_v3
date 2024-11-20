@@ -7,7 +7,7 @@ export default makeScene2D(function* (view) {
 	const text = createRef<Txt>();
 	view.add(<Rect size={[1920, 1080]} fill={colour_bg} />);
 	view.add(
-		<PFTxt ref={text} fill={colour_00}>
+		<PFTxt ref={text} fill={colour_01}>
 			{
 				"Oh, it's easy, I lost to time\n\
 Got a fever of a hundred and I'm feeling alright\n\
