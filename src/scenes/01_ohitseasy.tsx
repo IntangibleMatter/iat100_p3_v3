@@ -289,7 +289,7 @@ export default makeScene2D(function* (view) {
 						fill={idx == 2 || idx == 3 ? colour_01 : colour_fg}
 						strokeFirst={true}
 						lineWidth={4}
-						offset={[0, 0.5]}
+						offset={[0, 1]}
 						text={`​${letter}​`}
 						layout={false}
 						offsetX={1}
@@ -321,7 +321,7 @@ export default makeScene2D(function* (view) {
 	yield line2().position.x(() => thermometre_pos() + 102, 0.3125, easeOutCubic);
 	yield sequence(
 		0.12,
-		waitFor(0.1),
+		waitFor(0.0),
 		...txt_gotafever.map((obj) => all(obj.opacity(1, 0.167, easeOutCubic), obj.offset.y(0, 0.067))),
 	);
 
