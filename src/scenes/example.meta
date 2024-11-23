@@ -1,5 +1,62 @@
 {
   "version": 0,
-  "timeEvents": [],
+  "timeEvents": [
+    {
+      "name": "made it out with no",
+      "targetTime": 0
+    },
+    {
+      "name": "Verse 2",
+      "targetTime": 2.5101905552065054
+    },
+    {
+      "name": "v2 - got a fever",
+      "targetTime": 4.8859066163840925
+    },
+    {
+      "name": "v2 - made it outta life",
+      "targetTime": 7.396097171590597
+    },
+    {
+      "name": "v2 - made it out w no",
+      "targetTime": 9.976726747478917
+    },
+    {
+      "name": "nightlife",
+      "targetTime": 12.679023722726733
+    },
+    {
+      "name": "kill",
+      "targetTime": 15.304478129958024
+    },
+    {
+      "name": "sell",
+      "targetTime": 17.801861590495108
+    },
+    {
+      "name": "stole",
+      "targetTime": 20.420912450391686
+    },
+    {
+      "name": "chorus- attacking",
+      "targetTime": 21.69521836999907
+    },
+    {
+      "name": "permission",
+      "targetTime": 22.80943560623869
+    },
+    {
+      "name": "mission",
+      "targetTime": 25.383661634792297
+    },
+    {
+      "name": "decision",
+      "targetTime": 27.855430905990538
+    },
+    {
+      "name": "valid fight",
+      "targetTime": 30.19272568315986
+    }
+  ],
   "seed": 1671637456
 }

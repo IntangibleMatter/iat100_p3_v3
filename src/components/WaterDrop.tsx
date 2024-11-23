@@ -1,5 +1,5 @@
 import { Circle, Line, Rect, Shape, ShapeProps } from "@motion-canvas/2d";
-import { colour_fg } from "../defs/theme";
+import { colours } from "../defs/theme";
 import {
 	any,
 	createRef,
@@ -24,7 +24,7 @@ export class WaterDrop extends Shape {
 
 	public constructor(props?: ShapeProps) {
 		if (!props.fill) {
-			props.fill = colour_fg;
+			props.fill = colours.c_fg;
 		}
 		super({ ...props });
 		this.add(<Circle ref={this.drop} fill={this.fill} size={[64, 64]} y={-640} />);

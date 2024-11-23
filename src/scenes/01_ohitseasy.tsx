@@ -20,6 +20,7 @@ import {
 	createSignal,
 	easeInCubic,
 	easeInOutBack,
+	easeInOutBounce,
 	easeInOutCubic,
 	easeInOutElastic,
 	easeInOutExpo,
@@ -45,7 +46,15 @@ import {
 	waitFor,
 	waitUntil,
 } from "@motion-canvas/core";
-import { colour_00, colour_01, colour_bg, colour_fg } from "../defs/theme";
+import {
+	change_palette,
+	colours,
+	pal_fuzzyfour,
+	pal_kaneki,
+	pal_lavagb,
+	pal_spacehaze,
+	reset_palette,
+} from "../defs/theme";
 import { SplitTxt } from "../components/SplitTxt";
 import { PFSplitTxt, PFTxt } from "../components/PFTxt";
 
@@ -56,6 +65,10 @@ export default makeScene2D(function* (view) {
 	const line1_extension = createRef<Line>();
 	const line1_subs = createRefArray<Line>();
 	const line2 = createRef<Line>();
+	const line3 = createRef<Line>();
+	const line3_subs = createRefArray<Line>();
+	const thermrect = createRef<Rect>();
+	const thermrect_bars = createRefArray<Line>();
 	//const txt_ohitseasy_container = createRef<Node>();
 	const txt_ohitseasy_container = createRefArray<Node>();
 	const txt_ohitseasy = createRefArray<Txt>();
@@ -72,11 +85,17 @@ export default makeScene2D(function* (view) {
 	const txt_feelingalright = createRefArray<Txt>();
 	const txt_feelingalright_container = createRefArray<Node>();
 	const str_feelingalright = "and I'm feeling alright";
+	const txt_madeitout = createRef<SplitTxt>();
+	const txt_lifeinprison = createRef<SplitTxt>();
+	const str_madeitout = "made it outta life in prison";
+
+	//yield change_palette(pal_fuzzyfour, 0.1);
+	yield* reset_palette();
 
 	// oh its easy
 	if (true) {
 		// here to make it so I can close this block
-		view.add(<Rect ref={bg} size={[1920, 1080]} fill={colour_bg} />);
+		view.add(<Rect ref={bg} size={[1920, 1080]} fill={colours.c_bg} />);
 
 		// P0​=(0,a), P1​=(b,c), P2​=(c,b), P3​=(a,0), where
 		// a=1.00005519,
@@ -85,7 +104,7 @@ export default makeScene2D(function* (view) {
 		view.add(
 			<CubicBezier
 				ref={line1}
-				stroke={colour_fg}
+				stroke={colours.c_fg}
 				lineWidth={16}
 				p0={[-960, -130]}
 				p1={[-589, -129]}
@@ -93,7 +112,7 @@ export default makeScene2D(function* (view) {
 				p3={[-289, 540]}
 			/>,
 		);
-		view.add(<Circle ref={clockcentre} fill={colour_fg} position={[-960, 540]} size={[0, 0]} />);
+		view.add(<Circle ref={clockcentre} fill={colours.c_fg} position={[-960, 540]} size={[0, 0]} />);
 		view.add(
 			<Node>
 				{str_ohitseasy.split("").map((letter, idx) => (
@@ -110,7 +129,7 @@ export default makeScene2D(function* (view) {
 						<PFTxt
 							opacity={0}
 							ref={txt_ohitseasy}
-							stroke={colour_bg}
+							stroke={colours.c_bg}
 							strokeFirst={true}
 							lineWidth={4}
 							offset={[0, 0.5]}
@@ -133,7 +152,7 @@ export default makeScene2D(function* (view) {
 						[0, 0],
 						[0, 0],
 					]}
-					stroke={colour_fg}
+					stroke={colours.c_fg}
 					lineWidth={6}
 				/>,
 			);
@@ -180,7 +199,7 @@ export default makeScene2D(function* (view) {
 			<Line
 				ref={clockhand}
 				lineWidth={16}
-				stroke={colour_fg}
+				stroke={colours.c_fg}
 				position={[-960, 540]}
 				points={[
 					[0, 0],
@@ -221,14 +240,14 @@ export default makeScene2D(function* (view) {
 			]}
 			lineWidth={16}
 			rotation={() => line1().p0().sub(line1().p1()).rotate(180).degrees}
-			stroke={colour_fg}
+			stroke={colours.c_fg}
 		/>,
 	);
 
 	view.add(
 		<Line
 			ref={line2}
-			stroke={colour_fg}
+			stroke={colours.c_fg}
 			lineWidth={16}
 			position={[976, 540]}
 			offset={[-1, 0]}
@@ -241,9 +260,10 @@ export default makeScene2D(function* (view) {
 	view.add(
 		<Rect
 			ref={thermometre_bar}
-			fill={colour_00}
+			fill={colours.c_00}
 			size={[110, 0]}
 			offset={[-1, 1]}
+			opacity={1}
 			y={540}
 			x={thermometre_pos}
 		/>,
@@ -252,13 +272,13 @@ export default makeScene2D(function* (view) {
 	thermometre_bar().moveUp();
 
 	yield all(
-		line1().p0.y(-542, 0.625, easeInOutCubic),
+		line1().p0.y(-548, 0.625, easeInOutCubic),
 		line1().p0.x(thermometre_pos, 0.625, easeInOutCubic),
 		line1().p1.y(-270, 0.625, easeInOutCubic),
 		line1().p1.x(thermometre_pos, 0.625, easeInOutCubic),
 		line1().p2.y(270, 0.625, easeInOutCubic),
 		line1().p2.x(thermometre_pos, 0.625, easeInOutCubic),
-		line1().p3.y(542, 0.625, easeInOutCubic),
+		line1().p3.y(548, 0.625, easeInOutCubic),
 		line1().p3.x(thermometre_pos, 0.625, easeInOutCubic),
 	);
 
@@ -278,22 +298,50 @@ export default makeScene2D(function* (view) {
 					ref={txt_gotafever_container}
 					x={idx != 2 ? () => thermometre_pos() - 10 : () => thermometre_pos() - 432}
 					y={
-						128 * (idx < 2 || idx > 3 ? idx - 2 : 0) + (idx - 3 > 0 ? -48 : 0) * Math.sign(idx - 3)
+						128 * (idx < 2 || idx > 3 ? idx - 2 : 0) + (idx - 3 > 0 ? -72 : 0) * Math.sign(idx - 3)
 					}
 				>
 					<PFTxt
 						opacity={0}
 						//ref={makeRef(txt_gotafever, letter)}
 						ref={txt_gotafever}
-						stroke={colour_bg}
-						fill={idx == 2 || idx == 3 ? colour_01 : colour_fg}
+						stroke={colours.c_bg}
+						fill={idx == 2 || idx == 3 ? colours.c_01 : colours.c_fg}
 						strokeFirst={true}
 						lineWidth={4}
-						offset={[0, 1]}
+						offset={[1, 1]}
 						text={`​${letter}​`}
 						layout={false}
-						offsetX={1}
 						fontSize={idx == 2 || idx == 3 ? 128 : 64}
+					/>
+				</Node>
+			))}
+			;
+		</Node>,
+	);
+
+	view.add(
+		<Node>
+			{str_feelingalright.split(" ").map((letter, idx) => (
+				<Node
+					/* ref={makeRef(txt_gotafever_container, letter)} */
+					ref={txt_feelingalright_container}
+					x={() => thermometre_pos() + 120}
+					y={128 * (idx - 1.5)}
+				>
+					<PFTxt
+						opacity={1}
+						//ref={makeRef(txt_gotafever, letter)}
+						ref={txt_feelingalright}
+						textAlign={"right"}
+						stroke={colours.c_bg}
+						fill={colours.c_fg}
+						strokeFirst={true}
+						lineWidth={4}
+						offset={[-1, 0]}
+						text={`​${letter}​`}
+						layout={false}
+						fontSize={64}
 					/>
 				</Node>
 			))}
@@ -317,7 +365,7 @@ export default makeScene2D(function* (view) {
 	yield fixLines(view, line1_subs, line1);
 
 	yield* waitUntil("got a fever");
-	yield thermometre_bar().size.y(1080, 2.5, linear);
+	yield thermometre_bar().size.y(1080, 2.2, linear);
 	yield line2().position.x(() => thermometre_pos() + 102, 0.3125, easeOutCubic);
 	yield sequence(
 		0.12,
@@ -328,6 +376,154 @@ export default makeScene2D(function* (view) {
 	yield* waitUntil("fever slide left");
 
 	yield thermometre_pos(-50, 0.3125, easeInOutCubic);
+
+	// TODO: text in for "I'm feeling alright"
+
+	yield* waitUntil("prison");
+
+	line2().points([
+		[0, 0],
+		[0, -2048],
+	]);
+
+	view.add(
+		<Rect
+			ref={thermrect}
+			lineWidth={16}
+			stroke={colours.c_fg}
+			position={[thermometre_pos() + 51, 0]}
+			size={[102, 1096]}
+		/>,
+	);
+	view.add(
+		<Line
+			ref={line3}
+			position={thermrect().position}
+			points={[thermrect().bottomLeft, thermrect().topLeft]}
+			//stroke={"#ff00ff88"}
+			//lineWidth={8}
+		/>,
+	);
+	range(10).map((i) => {
+		view.add(
+			<Line
+				ref={thermrect_bars}
+				lineWidth={6}
+				stroke={colours.c_fg}
+				points={[
+					[0, 0],
+					[64, 0],
+				]}
+				rotation={() => thermrect().top().degrees + 90}
+				position={() => line3().getPointAtPercentage(i / 9).position}
+			/>,
+		);
+	});
+
+	thermometre_bar().moveToTop();
+	for (let i = 0; i < 14; i++) {
+		thermometre_bar().moveDown();
+	}
+	yield thermometre_bar().rotation(thermrect().rotation);
+	yield thermometre_bar().offset([0, 0]);
+	yield thermometre_bar().position(thermrect().position);
+	yield thermometre_bar().size(thermrect().size);
+	let prisonRotTime = 0.3125;
+	let prisonRotEase = easeInOutSine;
+	yield chain(
+		all(
+			thermrect().rotation(90, prisonRotTime, prisonRotEase),
+			line1().opacity(0, 0),
+			line2().opacity(0, 0),
+			line1().p0([10000, 10000], 0),
+			line1().p1([10001, 10000], 0),
+			line1().p2([10002, 10000], 0),
+			line1().p3([10003, 10000], 0),
+			thermrect().size([1100, 7096], prisonRotTime, prisonRotEase),
+			...thermrect_bars.map((bar) =>
+				all(
+					bar.points(
+						[
+							[0, 0],
+							[1100, 0],
+						],
+						prisonRotTime,
+						prisonRotEase,
+					),
+					bar.lineWidth(128, prisonRotTime, prisonRotEase),
+				),
+			),
+			/*line2().points(
+			[
+				[-960, 0],
+				[960, 0],
+			],
+			0.3125,
+		),
+		line1().p2([960, -540], 0.3125),
+		line1().p1([960, -540], 0.3125),
+		line1().p0([1920, -540], 0.3125),*/
+		),
+		all(
+			...txt_gotafever.map((obj) => obj.opacity(0, 0)),
+			...txt_gotafever.map((obj) => obj.position([10000, 100000], 0)),
+			...txt_feelingalright.map((obj) => obj.opacity(0, 0)),
+			...txt_feelingalright.map((obj) => obj.position([10000, 100000], 0)),
+			bg().fill(colours.c_00, 0),
+			chain(waitFor(0), thermometre_bar().opacity(0, 0)),
+		),
+	);
+
+	view.add(
+		<PFSplitTxt
+			ref={txt_madeitout}
+			offset={[0, 0]}
+			position={[-800, -256]}
+			text={"made it outta"}
+			separator={" "}
+			subProps={{
+				fontSize: 128,
+				fill: colours.c_01,
+				stroke: colours.c_00,
+				lineWidth: 4,
+				scale: [1.5, 1.5],
+				opacity: 0,
+			}}
+		/>,
+	);
+
+	view.add(
+		<PFSplitTxt
+			ref={txt_lifeinprison}
+			offset={[0, 0]}
+			position={[-800, 256]}
+			text={"life in prison"}
+			separator={" "}
+			subProps={{
+				fontSize: 128,
+				fill: colours.c_01,
+				stroke: colours.c_00,
+				lineWidth: 4,
+				scale: [1.5, 1.5],
+				opacity: 0,
+			}}
+		/>,
+	);
+
+	yield* waitUntil("made it out");
+
+	yield* sequence(
+		0.15,
+		...txt_madeitout().subtext.map((text) =>
+			all(text.opacity(1, 0.1), text.scale([1, 1], 0.28, easeOutBounce)),
+		),
+	);
+	yield* sequence(
+		0.15,
+		...txt_lifeinprison().subtext.map((text) =>
+			all(text.opacity(1, 0.1), text.scale([1, 1], 0.28, easeOutBounce)),
+		),
+	);
 
 	yield* waitUntil("ekjanks");
 });
@@ -360,7 +556,7 @@ function* fixLines(view: View2D, line1_subs: ReferenceArray<Line>, line1: Refere
 			<Line
 				ref={line1_subs}
 				lineWidth={6}
-				stroke={colour_fg}
+				stroke={colours.c_fg}
 				rotation={() => line1().getPointAtPercentage(i / 9).normal.degrees + 90}
 				position={() => line1().getPointAtPercentage(i / 9).position}
 				points={[

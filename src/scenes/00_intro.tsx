@@ -9,7 +9,7 @@ import {
 	waitFor,
 	waitUntil,
 } from "@motion-canvas/core";
-import { colour_bg, colour_fg } from "../defs/theme";
+import { change_palette, colours, pal_fuzzyfour } from "../defs/theme";
 import { WaterDrop } from "../components/WaterDrop";
 
 interface DropTimePair {
@@ -19,17 +19,18 @@ interface DropTimePair {
 
 export default makeScene2D(function* (view) {
 	const bg = createRef<Rect>();
+	yield* change_palette(pal_fuzzyfour, 0);
 
 	const startDrop = createRef<WaterDrop>();
 	const droplets: DropTimePair[] = [
-		{ drop: new WaterDrop({ fill: colour_fg, x: 0, y: 0 }), wait: 0.15 },
-		{ drop: new WaterDrop({ fill: colour_fg, x: 0, y: 0 }), wait: 0.39 },
-		{ drop: new WaterDrop({ fill: colour_fg, x: 0, y: 0 }), wait: 0.39 },
-		{ drop: new WaterDrop({ fill: colour_fg, x: 0, y: 0 }), wait: 0.16 },
-		{ drop: new WaterDrop({ fill: colour_fg, x: 0, y: 0 }), wait: 0.39 },
-		{ drop: new WaterDrop({ fill: colour_fg, x: 0, y: 0 }), wait: 0.31 },
-		{ drop: new WaterDrop({ fill: colour_fg, x: 0, y: 0 }), wait: 0.31 },
-		{ drop: new WaterDrop({ fill: colour_fg, x: 0, y: 0 }), wait: 0.4 }, // also on 0.4 second wait
+		{ drop: new WaterDrop({ fill: colours.c_fg, x: 0, y: 0 }), wait: 0.15 },
+		{ drop: new WaterDrop({ fill: colours.c_fg, x: 0, y: 0 }), wait: 0.39 },
+		{ drop: new WaterDrop({ fill: colours.c_fg, x: 0, y: 0 }), wait: 0.39 },
+		{ drop: new WaterDrop({ fill: colours.c_fg, x: 0, y: 0 }), wait: 0.16 },
+		{ drop: new WaterDrop({ fill: colours.c_fg, x: 0, y: 0 }), wait: 0.39 },
+		{ drop: new WaterDrop({ fill: colours.c_fg, x: 0, y: 0 }), wait: 0.31 },
+		{ drop: new WaterDrop({ fill: colours.c_fg, x: 0, y: 0 }), wait: 0.31 },
+		{ drop: new WaterDrop({ fill: colours.c_fg, x: 0, y: 0 }), wait: 0.4 }, // also on 0.4 second wait
 	];
 	const dropTargets: number[][] = [
 		// first set
@@ -72,7 +73,7 @@ export default makeScene2D(function* (view) {
 		[10000, 10000],
 	];
 
-	view.add(<Rect ref={bg} fill={colour_bg} size={[1920, 1080]} />);
+	view.add(<Rect ref={bg} fill={colours.c_bg} size={[1920, 1080]} />);
 	view.add(<WaterDrop ref={startDrop} />);
 	for (const drop of droplets) {
 		view.add(drop.drop);
@@ -110,7 +111,7 @@ export default makeScene2D(function* (view) {
 			dropidx++;
 			yield* waitFor(drop.wait);
 			logger.debug(
-				`Waited: ${drop.wait}s for bg of colour ${drop.drop.fill()} on frame ${playback.frame}.`,
+				`Waited: ${drop.wait}s for bg of colours.c ${drop.drop.fill()} on frame ${playback.frame}.`,
 			);
 			//yield drop.drop.position.y(0, 0); // replace with the actual drop doing its thing call
 		}

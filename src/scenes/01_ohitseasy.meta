@@ -23,11 +23,19 @@
     },
     {
       "name": "fever slide left",
-      "targetTime": 3.1963733779854397
+      "targetTime": 3.031447715199668
+    },
+    {
+      "name": "prison",
+      "targetTime": 4.458549596697222
+    },
+    {
+      "name": "made it out",
+      "targetTime": 4.533394889497585
     },
     {
       "name": "ekjanks",
-      "targetTime": 7.2887201626962055
+      "targetTime": 7.146522239890235
     }
   ],
   "seed": 1047734592

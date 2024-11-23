@@ -1,10 +1,10 @@
 import { Txt, withDefaults } from "@motion-canvas/2d";
-import { colour_fg } from "../defs/theme";
+import { colours } from "../defs/theme";
 import { SplitTxt } from "./SplitTxt";
 import { SplitText } from "./SplitText";
 
 const defaults = {
-	fill: colour_fg,
+	fill: colours.c_fg,
 	fontFamily: "Plasmatic",
 	fontSize: 64,
 };
