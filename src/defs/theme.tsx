@@ -79,7 +79,7 @@ export var pal_bittersweet: ColourPalette = {
 };
 
 // Crimson by WildLeoKnight : https://lospec.com/palette-list/crimson
-export var crimson: ColourPalette = {
+export var pal_crimson: ColourPalette = {
 	c_fg: createSignal(new Color("#eff9d6")),
 	c_bg: createSignal(new Color("#1b0326")),
 	c_00: createSignal(new Color("#7a1c4b")),
@@ -87,7 +87,7 @@ export var crimson: ColourPalette = {
 };
 
 // AYY4 by Polyducks : https://lospec.com/palette-list/ayy4
-export var ayy4: ColourPalette = {
+export var pal_ayy4: ColourPalette = {
 	c_fg: createSignal(new Color("#f1f2da")),
 	c_bg: createSignal(new Color("#00303b")),
 	c_00: createSignal(new Color("#ff7777")),
@@ -95,7 +95,7 @@ export var ayy4: ColourPalette = {
 };
 
 // Ice Cream GB by Kerrie Lake : https://lospec.com/palette-list/ice-cream-gb
-export var icecream_gb: ColourPalette = {
+export var pal_icecream_gb: ColourPalette = {
 	c_fg: createSignal(new Color("#fff6d3")),
 	c_bg: createSignal(new Color("#7c3f58")),
 	c_00: createSignal(new Color("#eb6b6f")),
@@ -103,11 +103,69 @@ export var icecream_gb: ColourPalette = {
 };
 
 // Bicycle GB by Beaquen : https://lospec.com/palette-list/bicycle
-export var bicycle_gb: ColourPalette = {
+export var pal_bicycle_gb: ColourPalette = {
 	c_fg: createSignal(new Color("#f0f0f0")),
 	c_bg: createSignal(new Color("#161616")),
 	c_00: createSignal(new Color("#ab4646")),
 	c_01: createSignal(new Color("#8f9bf6")),
+};
+
+// Twilight 5 by Star : https://lospec.com/palette-list/twilight-5
+export var pal_twilight5: ColourPalette = {
+	c_fg: createSignal(new Color("#fbbbad")),
+	c_bg: createSignal(new Color("#292831")),
+	c_00: createSignal(new Color("#ee8695")),
+	c_01: createSignal(new Color("#4a7a96")),
+	c_02: createSignal(new Color("#33ff58")),
+};
+
+// Blessing by まるき : https://lospec.com/palette-list/blessing
+export var pal_blessing: ColourPalette = {
+	c_fg: createSignal(new Color("#f7ffae")),
+	c_bg: createSignal(new Color("#74569b")),
+	c_00: createSignal(new Color("#ffb3cb")),
+	c_01: createSignal(new Color("#96fbc7")),
+	c_02: createSignal(new Color("#d8bfd8")),
+};
+
+// Hollow by Poltergasm : https://lospec.com/palette-list/hollow
+export var pal_hollow: ColourPalette = {
+	c_fg: createSignal(new Color("#fafbf6")),
+	c_bg: createSignal(new Color("#0f0f1b")),
+	c_00: createSignal(new Color("#565a75")),
+	c_01: createSignal(new Color("#c6b7be")),
+};
+
+// Arq4 by ENDESGA: https://lospec.com/palette-list/arq4
+export var pal_arq4: ColourPalette = {
+	c_fg: createSignal(new Color("#ffffff")),
+	c_bg: createSignal(new Color("#000000")),
+	c_00: createSignal(new Color("#3a3277")),
+	c_01: createSignal(new Color("#6772a9")),
+};
+
+// Heart4 by Lavenfurr: https://lospec.com/palette-list/heart4
+export var pal_heart4: ColourPalette = {
+	c_fg: createSignal(new Color("#ebe5ce")),
+	c_bg: createSignal(new Color("#3e2653")),
+	c_00: createSignal(new Color("#ff4589")),
+	c_01: createSignal(new Color("#a64777")),
+};
+
+// PurpleDawn by WildLeoKnight: https://lospec.com/palette-list/purpledawn
+export var pal_purpledawn: ColourPalette = {
+	c_fg: createSignal(new Color("#eefded")),
+	c_bg: createSignal(new Color("#001b2e")),
+	c_00: createSignal(new Color("#9a7bbc")),
+	c_01: createSignal(new Color("#2d757e")),
+};
+
+// CGA High
+export var pal_cga_hi: ColourPalette = {
+	c_fg: createSignal(new Color("#ffffff")),
+	c_bg: createSignal(new Color("#000000")),
+	c_00: createSignal(new Color("#ff55ff")),
+	c_01: createSignal(new Color("#55ffff")),
 };
 
 export var colours: ColourPalette = {

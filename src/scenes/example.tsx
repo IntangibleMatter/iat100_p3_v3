@@ -1,7 +1,14 @@
 import { Circle, makeScene2D, Rect, Txt } from "@motion-canvas/2d";
 import { createRef, waitFor, waitUntil } from "@motion-canvas/core";
 import { PFTxt } from "../components/PFTxt";
-import { change_palette, colours, pal_blk_aqu4 } from "../defs/theme";
+import {
+	change_palette,
+	colours,
+	pal_bittersweet,
+	pal_blk_aqu4,
+	pal_lavagb,
+	pal_spacehaze,
+} from "../defs/theme";
 
 export default makeScene2D(function* (view) {
 	const text = createRef<Txt>();
@@ -28,6 +35,24 @@ export default makeScene2D(function* (view) {
 			lineHeight={64}
 		/>,
 	);
+	view.add(<PFTxt fill={colours.c_fg} text={"fg"} position={[-800, -128]} fontSize={32} />);
+	view.add(
+		<PFTxt
+			fill={colours.c_bg}
+			text={"bg"}
+			position={[-800, -64]}
+			stroke={colours.c_fg}
+			lineWidth={1}
+			fontSize={32}
+		/>,
+	);
+	view.add(<PFTxt fill={colours.c_00} text={"00"} position={[-800, 16]} fontSize={32} />);
+	view.add(<PFTxt fill={colours.c_01} text={"01"} position={[-800, 80]} fontSize={32} />);
+	view.add(<PFTxt fill={colours.c_02} text={"02"} position={[-800, 144]} fontSize={32} />);
+	view.add(<PFTxt fill={colours.c_03} text={"03"} position={[-800, 208]} fontSize={32} />);
+	view.add(<PFTxt fill={colours.c_04} text={"04"} position={[-800, 272]} fontSize={32} />);
+	view.add(<PFTxt fill={colours.c_05} text={"05"} position={[-800, 336]} fontSize={32} />);
+	//view.add(<PFTxt fill={colours.c_05} text={"05"} position={[-800, 336]} fontSize={32} />);
 
 	/*	view.add(
 		<PFTxt ref={text} fill={colours.c_01}>
@@ -56,6 +81,7 @@ Attacking vertical 1234567890"
 	yield text2().text("Words displayed on a digital clock\nusing 7-segment display font", 0.125);
 
 	*/
+	yield change_palette(pal_bittersweet, 0.25);
 	yield* waitUntil("v2 - got a fever");
 	yield text().text("Got a fever of 100 and\nI'm feeling alright", 0.125);
 	yield text2().text(
@@ -74,7 +100,6 @@ Attacking vertical 1234567890"
 	yield text2().text("camera pan down, bottom handcuff opens", 0.125);
 
 	yield* waitUntil("nightlife");
-	yield change_palette(pal_blk_aqu4, 0.25);
 	yield text().text("I-I-I-I-I will find you in the nightlife", 0.125);
 	yield text2().text(
 		"Streetlamps turn on in time with\nwords to reveal the words in the dark",
