@@ -34,8 +34,12 @@
       "targetTime": 4.533394889497585
     },
     {
-      "name": "ekjanks",
-      "targetTime": 7.146522239890235
+      "name": "bright",
+      "targetTime": 9.139028239629251
+    },
+    {
+      "name": "bright_glow",
+      "targetTime": 9.320539200918699
     }
   ],
   "seed": 1047734592

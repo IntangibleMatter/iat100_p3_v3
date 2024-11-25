@@ -112,6 +112,14 @@ export var bicycle_gb: ColourPalette = {
 
 export var colours: ColourPalette = {
 	...pal_fuzzyfour_dupe,
+	c_02: createSignal(new Color("#ffffff")),
+	c_03: createSignal(new Color("#ffffff")),
+	c_04: createSignal(new Color("#ffffff")),
+	c_05: createSignal(new Color("#ffffff")),
+	c_06: createSignal(new Color("#ffffff")),
+	c_07: createSignal(new Color("#ffffff")),
+	c_08: createSignal(new Color("#ffffff")),
+	c_09: createSignal(new Color("#ffffff")),
 };
 
 export function* change_palette(to: ColourPalette, time: number, easing = easeInOutCubic) {
@@ -120,14 +128,30 @@ export function* change_palette(to: ColourPalette, time: number, easing = easeIn
 	yield colours.c_00(to.c_00, time, easing);
 	yield colours.c_01(to.c_01, time, easing);
 
-	yield colours.c_02(to.c_02 ?? colours.c_02, time, easing);
-	yield colours.c_03(to.c_03 ?? colours.c_03, time, easing);
-	yield colours.c_04(to.c_04 ?? colours.c_04, time, easing);
-	yield colours.c_05(to.c_05 ?? colours.c_05, time, easing);
-	yield colours.c_06(to.c_06 ?? colours.c_06, time, easing);
-	yield colours.c_07(to.c_07 ?? colours.c_07, time, easing);
-	yield colours.c_08(to.c_08 ?? colours.c_08, time, easing);
-	yield colours.c_09(to.c_09 ?? colours.c_09, time, easing);
+	if (to.c_02) {
+		yield colours.c_02(to.c_02, time, easing);
+	}
+	if (to.c_03) {
+		yield colours.c_03(to.c_03, time, easing);
+	}
+	if (to.c_04) {
+		yield colours.c_04(to.c_04, time, easing);
+	}
+	if (to.c_05) {
+		yield colours.c_05(to.c_05, time, easing);
+	}
+	if (to.c_06) {
+		yield colours.c_06(to.c_06, time, easing);
+	}
+	if (to.c_07) {
+		yield colours.c_07(to.c_07, time, easing);
+	}
+	if (to.c_08) {
+		yield colours.c_08(to.c_08, time, easing);
+	}
+	if (to.c_09) {
+		yield colours.c_09(to.c_09, time, easing);
+	}
 
 	yield* waitFor(time);
 }
@@ -138,7 +162,6 @@ export function* reset_palette() {
 	yield colours.c_bg(pal_fuzzyfour.c_bg, 0.625);
 	yield colours.c_fg(pal_fuzzyfour.c_fg, 0.625);
 
-	/*
 	yield colours.c_02(new Color("#ffffff"));
 	yield colours.c_03(new Color("#ffffff"));
 	yield colours.c_04(new Color("#ffffff"));
@@ -147,5 +170,4 @@ export function* reset_palette() {
 	yield colours.c_07(new Color("#ffffff"));
 	yield colours.c_08(new Color("#ffffff"));
 	yield colours.c_09(new Color("#ffffff"));
-	*/
 }

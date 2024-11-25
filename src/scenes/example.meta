@@ -2,60 +2,52 @@
   "version": 0,
   "timeEvents": [
     {
-      "name": "made it out with no",
-      "targetTime": 0
-    },
-    {
-      "name": "Verse 2",
-      "targetTime": 2.5101905552065054
-    },
-    {
       "name": "v2 - got a fever",
-      "targetTime": 4.8859066163840925
+      "targetTime": 0.04763924010614222
     },
     {
       "name": "v2 - made it outta life",
-      "targetTime": 7.396097171590597
+      "targetTime": 2.190847512296482
     },
     {
       "name": "v2 - made it out w no",
-      "targetTime": 9.976726747478917
+      "targetTime": 4.7714770881848025
     },
     {
       "name": "nightlife",
-      "targetTime": 12.679023722726733
+      "targetTime": 7.473774063432618
     },
     {
       "name": "kill",
-      "targetTime": 15.304478129958024
+      "targetTime": 10.09922847066391
     },
     {
       "name": "sell",
-      "targetTime": 17.801861590495108
+      "targetTime": 12.596611931200991
     },
     {
       "name": "stole",
-      "targetTime": 20.420912450391686
+      "targetTime": 15.21566279109757
     },
     {
       "name": "chorus- attacking",
-      "targetTime": 21.69521836999907
+      "targetTime": 16.48996871070495
     },
     {
       "name": "permission",
-      "targetTime": 22.80943560623869
+      "targetTime": 17.604185946944572
     },
     {
       "name": "mission",
-      "targetTime": 25.383661634792297
+      "targetTime": 20.17841197549818
     },
     {
       "name": "decision",
-      "targetTime": 27.855430905990538
+      "targetTime": 22.65018124669642
     },
     {
       "name": "valid fight",
-      "targetTime": 30.19272568315986
+      "targetTime": 24.987476023865742
     }
   ],
   "seed": 1671637456

@@ -44,6 +44,7 @@ Attacking vertical 1234567890"
 			}
 		</PFTxt>,
 	);*/
+	/*
 	yield* waitUntil("made it out with no");
 	yield text().text("Made it out with no convictions\nI like to be bright", 0.125);
 	yield text2().text(
@@ -54,6 +55,7 @@ Attacking vertical 1234567890"
 	yield text().text("Oh, it's easy, I lost to time", 0.125);
 	yield text2().text("Words displayed on a digital clock\nusing 7-segment display font", 0.125);
 
+	*/
 	yield* waitUntil("v2 - got a fever");
 	yield text().text("Got a fever of 100 and\nI'm feeling alright", 0.125);
 	yield text2().text(
