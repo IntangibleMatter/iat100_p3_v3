@@ -1,0 +1,14 @@
+{
+  "version": 0,
+  "timeEvents": [
+    {
+      "name": "made it out - offset accounter",
+      "targetTime": 0
+    },
+    {
+      "name": "madeitout end",
+      "targetTime": 4.6143514567152355
+    }
+  ],
+  "seed": 3776228676
+}

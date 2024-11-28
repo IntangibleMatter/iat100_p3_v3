@@ -96,8 +96,9 @@ export default makeScene2D(function* (view) {
 	const txt_afine = createRefArray<SplitTxt>();
 	const txt_withoutevenafine_container = createRef<Node>();
 
-	const txt_madeitout2 = createRefArray<Txt>();
-	const txt_madeitout2_container = createRefArray<Node>();
+	const txt_madeitout2 = createRef<SplitTxt>();
+	const txt_conviction = createRef<Txt>();
+	const txt_iliketobe = createRef<SplitTxt>();
 	const txt_bright = createRef<Txt>();
 
 	//yield change_palette(pal_fuzzyfour, 0.1);
@@ -434,7 +435,6 @@ export default makeScene2D(function* (view) {
 				/>,
 			);
 		});
-
 		thermometre_bar().moveToTop();
 		for (let i = 0; i < 14; i++) {
 			thermometre_bar().moveDown();
@@ -488,7 +488,6 @@ export default makeScene2D(function* (view) {
 				chain(waitFor(0), thermometre_bar().opacity(0, 0)),
 			),
 		);
-
 		view.add(
 			<PFSplitTxt
 				ref={txt_madeitout}
@@ -546,7 +545,6 @@ export default makeScene2D(function* (view) {
 				,
 			</Node>,
 		);
-
 		/*view.add(
 		<Node>
 			{"without even a fine".split(" ").map((letter, idx) => (
@@ -580,7 +578,6 @@ export default makeScene2D(function* (view) {
 		}
 
 		yield* waitUntil("made it out");
-
 		yield* sequence(
 			0.15,
 			...txt_madeitout().subtext.map((text) =>
@@ -622,9 +619,42 @@ export default makeScene2D(function* (view) {
 		yield txt_withoutevenafine_container().remove();
 		yield txt_afine().remove();
 		yield thermrect().remove();
-		yield thermrect_bars.map((bar) => bar.remove());
+		yield freeObjs(thermrect_bars);
 	}
 
+	view.add(
+		<PFSplitTxt
+			ref={txt_madeitout2}
+			text={"made it out with no"}
+			subProps={{ fill: colours.c_fg, opacity: 0, scale: [0.25, 0.25] }}
+			separator={" "}
+			fontSize={80}
+			position={[-706, -400]}
+		/>,
+	);
+
+	view.add(
+		<PFTxt
+			ref={txt_conviction}
+			text={"convictions"}
+			y={-200}
+			fontSize={128}
+			fill={colours.c_00}
+			offsetY={-1}
+			opacity={0}
+		/>,
+	);
+	view.add(
+		<PFSplitTxt
+			ref={txt_iliketobe}
+			text={"I like to be"}
+			separator={" "}
+			subProps={{ fill: colours.c_01, opacity: 0, scale: [0.25, 0.25] }}
+			fontSize={100}
+			position={[-527, 10]}
+		/>,
+	);
+	//view.add(<PFTxt text={"I like to be"} opacity={0.5} fill={"red"} fontSize={100} />);
 	view.add(
 		<PFTxt
 			ref={txt_bright}
@@ -633,9 +663,25 @@ export default makeScene2D(function* (view) {
 			shadowColor={colours.c_fg}
 			shadowBlur={16}
 			shadowOffset={[0, 0]}
-			position={[0, 256]}
+			position={[0, 310]}
 			opacity={0}
 		/>,
+	);
+
+	yield sequence(
+		0.15,
+		...txt_madeitout2().subtext.map((letter) =>
+			any(letter.opacity(1, 0.15), letter.scale([1, 1], 0.25, easeOutElastic)),
+		),
+	);
+	yield* waitUntil("convictions");
+	yield all(txt_conviction().opacity(1, 0.25), txt_conviction().offset.y(0, 0.35, easeOutBack));
+	yield* waitUntil("I like to be");
+	yield sequence(
+		0.15,
+		...txt_iliketobe().subtext.map((letter) =>
+			any(letter.opacity(1, 0.15), letter.scale([1, 1], 0.2, easeOutBounce)),
+		),
 	);
 
 	yield* waitUntil("bright");
@@ -647,6 +693,13 @@ export default makeScene2D(function* (view) {
 		txt_bright().shadowBlur(256, 0.4, easeInCubic),
 		chain(waitFor(0.25), bg().fill(colours.c_fg, 0.15, easeInQuad)),
 		chain(waitFor(0.3), change_palette(pal_kaneki, 0.1)),
+		chain(
+			waitFor(0.15),
+			any(
+				...txt_iliketobe().subtext.map((letter) => letter.fill(colours.c_fg, 0.1, easeInQuad)),
+				txt_conviction().fill(colours.c_fg, 0.1, easeInQuad),
+			),
+		),
 	);
 
 	//yield* waitUntil("ekjanks");

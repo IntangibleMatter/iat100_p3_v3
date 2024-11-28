@@ -73,8 +73,8 @@ export class SplitTxt extends Shape {
 
 		this.setWidth(size.width);
 
-		logger.debug(`Props.text: ${props.text.toString()}`);
-		logger.debug(`Props.separator: "${props.separator.toString()}"`);
+		//logger.debug(`Props.text: ${props.text.toString()}`);
+		//logger.debug(`Props.separator: "${props.separator.toString()}"`);
 		props.text
 			.toString()
 			.split(props.separator.toString())
@@ -87,7 +87,7 @@ export class SplitTxt extends Shape {
 				this.canvas.font = `${this.lastSetFontSize()}px ${this.fontFamily}`;
 
 				const size = this.canvas.measureText(`${word}${props.separator.toString()}`);
-				logger.debug(`The text ${word}${props.separator.toString()} is ${size.width}px wide`);
+				//logger.debug(`The text ${word}${props.separator.toString()} is ${size.width}px wide`);
 
 				let ntxt = new Txt({
 					...props.subProps,
@@ -97,9 +97,9 @@ export class SplitTxt extends Shape {
 				//nnode.add(ntxt);
 				this.subtext.push(ntxt);
 				this.add(ntxt);
-				logger.debug(`adding ${word}, ${this.subtext.length}`);
-				logger.debug(`ntxt position: (${ntxt.position.x()}, ${ntxt.position.y()})`);
+				//logger.debug(`adding ${word}, ${this.subtext.length}`);
+				//logger.debug(`ntxt position: (${ntxt.position.x()}, ${ntxt.position.y()})`);
 			});
-		logger.debug(`Subtext size: ${this.subtext.length}`);
+		//logger.debug(`Subtext size: ${this.subtext.length}`);
 	}
 }

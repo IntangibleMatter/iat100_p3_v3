@@ -80,7 +80,6 @@ Attacking vertical 1234567890"
 	yield text().text("Oh, it's easy, I lost to time", 0.125);
 	yield text2().text("Words displayed on a digital clock\nusing 7-segment display font", 0.125);
 
-	*/
 	yield change_palette(pal_bittersweet, 0.25);
 	yield* waitUntil("v2 - got a fever");
 	yield text().text("Got a fever of 100 and\nI'm feeling alright", 0.125);
@@ -88,6 +87,7 @@ Attacking vertical 1234567890"
 		"Digital thermometer, using screen of\ndigital clock to transition between the two",
 		0.125,
 	);
+	*/
 
 	yield* waitUntil("v2 - made it outta life");
 	yield text().text("Made it outta life in prison\nwithout even a fine", 0.125);
