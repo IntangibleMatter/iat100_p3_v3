@@ -7,59 +7,59 @@
     },
     {
       "name": "oie - easy",
-      "targetTime": 0.8795080634739811
+      "targetTime": 0.8356345959160858
     },
     {
       "name": "oie - I",
-      "targetTime": 1.2572532110976926
+      "targetTime": 1.2133797435397973
     },
     {
       "name": "oie - lost",
-      "targetTime": 1.4911672544666048
+      "targetTime": 1.4472937869087095
     },
     {
       "name": "oie - to",
-      "targetTime": 1.787656369950019
+      "targetTime": 1.7437829023921236
     },
     {
       "name": "oie - time",
-      "targetTime": 2.067587903763156
+      "targetTime": 2.0237144362052604
     },
     {
       "name": "oie - end",
-      "targetTime": 2.2538973063848795
+      "targetTime": 2.210023838826984
     },
     {
       "name": "fever - 100",
-      "targetTime": 2.935171454687318
+      "targetTime": 2.8912979871294224
     },
     {
       "name": "feel - feeling move up",
-      "targetTime": 3.188893445250963
+      "targetTime": 3.1450199776930674
     },
     {
       "name": "feel - and",
-      "targetTime": 3.557983756821447
-    },
-    {
-      "name": "feel - I'm",
-      "targetTime": 3.747623970467547
-    },
-    {
-      "name": "feel - feeling",
-      "targetTime": 3.920693371685618
-    },
-    {
-      "name": "feel - alright",
-      "targetTime": 4.36168391070328
-    },
-    {
-      "name": "feel - out",
-      "targetTime": 4.66168391070328
+      "targetTime": 3.5141102892635514
     },
     {
       "name": "v2 end",
-      "targetTime": 4.981613042486693
+      "targetTime": 4.937739574928797
+    },
+    {
+      "name": "feel - I'm",
+      "targetTime": 3.7037505029096516
+    },
+    {
+      "name": "feel - feeling",
+      "targetTime": 3.8768199041277223
+    },
+    {
+      "name": "feel - alright",
+      "targetTime": 4.317810443145384
+    },
+    {
+      "name": "feel - out",
+      "targetTime": 4.617810443145384
     }
   ],
   "seed": 4237826698

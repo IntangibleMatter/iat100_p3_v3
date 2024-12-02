@@ -53,10 +53,10 @@ export class StreetLight extends Layout {
 	private readonly textMask = createRef<Polygon>();
 	private readonly light = createRef<Polygon>();
 	private readonly lightBottom = createRef<CubicBezier>();
-	private readonly lampTop = createRef<CubicBezier>();
-	private readonly lampBot = createRef<CubicBezier>();
+	//private readonly lampTop = createRef<CubicBezier>();
+	//private readonly lampBot = createRef<CubicBezier>();
 
-	private readonly lightHeight = 880;
+	private readonly lightHeight = 1280;
 
 	public constructor(props?: StreeLightProps) {
 		super({ ...props });
@@ -69,7 +69,7 @@ export class StreetLight extends Layout {
 				height={this.lightHeight}
 				sides={3}
 				fill={() => this.lightColour().alpha(0.95)}
-				position={[0, -100]}
+				position={[0, -180]}
 			/>,
 		);
 		this.add(

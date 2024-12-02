@@ -13,9 +13,11 @@ import {
 	easeInOutBack,
 	easeInOutElastic,
 	easeInQuint,
+	easeInSine,
 	easeOutBack,
 	easeOutBounce,
 	easeOutElastic,
+	easeOutExpo,
 	easeOutQuad,
 	range,
 	sequence,
@@ -36,6 +38,12 @@ const str_madeitout = "made it outta life in prison";
 const bars = createRefArray<Line>();
 const txt_withouteven = createRef<SplitTxt>();
 const txt_afine = createRef<SplitTxt>();
+
+const txt_madeitoutno = createRef<SplitTxt>();
+const str_madeitoutno = "made it out with no";
+const txt_convictions = createRef<SplitTxt>();
+const txt_iliketobe = createRef<SplitTxt>();
+const txt_bright = createRef<Txt>();
 
 const canvas = document.createElement("canvas").getContext("2d");
 const logger = useLogger();
@@ -168,4 +176,73 @@ function* madeitoutno(view: View2D) {
 		txt_afine().position.x(-2900, 0.3125, easeInBack),
 		txt_withouteven().position.x(2900, 0.3125, easeInBack),
 	);
+
+	view.add(
+		<PFSplitTxt
+			ref={txt_madeitoutno}
+			text={str_madeitoutno}
+			separator={" "}
+			position={[-555, -400]}
+			subProps={{ fill: colours.c_00, scaleY: 4, opacity: 0 }}
+		/>,
+	);
+	view.add(
+		<PFSplitTxt
+			ref={txt_convictions}
+			text={"con​vic​tions"}
+			position={[-550, -200]}
+			separator={"​"}
+			fontSize={96}
+			subProps={{ fill: colours.c_01, opacity: 0 }}
+		/>,
+	);
+
+	view.add(
+		<PFSplitTxt
+			ref={txt_iliketobe}
+			text={"I like to be"}
+			separator={" "}
+			subProps={{ fill: colours.c_bg, opacity: 0, scale: [0.5, 1.5] }}
+			scaleX={1.6}
+			position={[-526, -48]}
+		/>,
+	);
+	view.add(
+		<PFTxt
+			ref={txt_bright}
+			text={"bright"}
+			stroke={colours.c_bg}
+			lineWidth={4}
+			opacity={0}
+			scale={[0.25, 0.25]}
+			fontSize={256}
+			position={[0, 200]}
+		/>,
+	);
+	//view.add(<PFTxt text={"I like to be"} opacity={0.5} fontSize={64} fill={"red"} scaleX={1.6} />);
+
+	yield* waitUntil("made it out with no");
+	yield* sequence(
+		0.167,
+		...txt_madeitoutno().subtext.map((letter) =>
+			any(letter.scale.y(1, 0.3125, easeOutBounce), letter.opacity(1, 0.1, easeOutQuad)),
+		),
+	);
+	yield* sequence(0.167, ...txt_convictions().subtext.map((letter) => any(letter.opacity(1, 0.1))));
+	yield* waitUntil("i like to be");
+	yield sequence(
+		0.167,
+		...txt_iliketobe().subtext.map((letter) =>
+			any(letter.opacity(1, 0.1), letter.scale([1, 1], 0.125, easeOutBounce)),
+		),
+	);
+	yield* waitUntil("bright");
+	yield all(txt_bright().scale([1, 1], 0.2), txt_bright().opacity(1, 0.2));
+	yield* waitUntil("bright out");
+	yield txt_bright().fill(colours.c_bg, 0);
+	yield txt_bright().stroke(colours.c_fg, 0);
+	yield bg().fill(colours.c_bg, 0);
+	yield bg().moveToTop();
+	yield bg().moveDown();
+	yield txt_bright().lineWidth(0, 0.3, easeInSine);
 }
